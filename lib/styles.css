@@ -1,0 +1,125 @@
+/***** POPUP *****/
+.em-popup-overlay {
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0; 
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.em-popup-overlay.em-active {
+    display: flex; /* Display flex ONLY when active */
+    opacity: 1;
+    pointer-events: all;
+}
+
+.em-popup .em-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.em-popup {
+    background-size: cover!important;
+    background-repeat: no-repeat;
+    background-position: center!important;
+    background: #fff;
+    padding: 0;
+    width: 100%;
+    max-width: 870px;
+    position: relative;
+}
+
+.em-popup .em-popup-content h2.em-popup-title {
+    margin: 0;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.em-popup-trigger {
+    cursor: pointer;
+}
+
+.em-popup .em-popup-close {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 99999;
+    transition: all 0.4s ease;
+    opacity: 0.5;
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.em-popup .em-popup-close svg {
+    width: 100%;
+    height: auto;
+}
+
+.em-popup-close:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.em-popup .button {
+    margin: 0 auto;
+}
+
+.em-popup label {
+    width: 100%;
+    text-align: left;
+}
+
+.em-popup.em-content-scroll {
+    padding-right: 0;
+}
+
+.em-popup-content {
+    overflow-y: scroll;
+    max-height: 70vh;
+}
+
+@keyframes popupIn {
+    0% { 
+    z-index: -999999;
+    opacity: 0;
+    display: none;
+    }
+    
+    1% { 
+    z-index: 99999;
+    opacity: 0;
+    display: flex;
+    }
+    
+    100% {
+    z-index: 99999;
+    opacity: 1;
+    display: flex;
+    left: 0;
+    top: 0;
+    }
+}
+
+.em-popup-close:hover {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 767px){
+    .em-popup {
+        width: 90vw;
+        max-height: 90vh;
+        overflow-y: scroll;
+    }
+}
