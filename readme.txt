@@ -22,8 +22,8 @@ Features include:
 
 == Installation ==
 
-1. Include the `em_popup()` function in your theme or plugin.
-2. Call `em_popup()` where you want the popup to appear.
+1. Include the `emberly_popup()` function in your theme or plugin.
+2. Call `emberly_popup()` where you want the popup to appear.
 3. Make sure `assets/icons/close.svg` exists for the close button.
 
 == Debugging ==
@@ -35,7 +35,7 @@ Use the `debug` parameter to enable verbose logging for a specific popup. This o
 To enable:
 
 ```php
-em_popup(
+emberly_popup(
     title: 'Example',
     content: '<p>Debugging is on!</p>',
     id: 'debug-popup',
@@ -51,7 +51,7 @@ Popups can only be called via PHP functions. The most ideal scenario is to call 
 Example using **PHP 8+ named arguments**:
 
 ```php
-em_popup(
+emberly_popup(
     title: '',
     content: '<p>Thanks for visiting our site. Don\'t miss our latest offers!</p>',
     id: 'welcome-popup',
@@ -70,7 +70,7 @@ em_popup(
 Example for **PHP 7 and earlier** (ordered arguments):
 
 ```php
-em_popup(
+emberly_popup(
     '', // $title
     '<p>Thanks for visiting our site. Don\'t miss our latest offers!</p>',
     'category-survey-popup', // $id
@@ -90,7 +90,7 @@ em_popup(
 
 You can open popups automatically by using the auto_open parameter.
 
-Want to open with a click? Popups can be opened manually by adding a trigger element anywhere on your page with the `em-popup-trigger-id` attribute. The value should match the ID you assigned to the popup via the `$id` parameter in your `em_popup()` call.
+Want to open with a click? Popups can be opened manually by adding a trigger element anywhere on your page with the `em-popup-trigger-id` attribute. The value should match the ID you assigned to the popup via the `$id` parameter in your `emberly_popup()` call.
 
 ### Example
 

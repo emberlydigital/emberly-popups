@@ -5,7 +5,7 @@
  * @package Emberly
  * @subpackage Emberly Popups
  * @since 1.0
- * @version 1.0
+ * @version 1.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param bool $open Whether the popup should be open by default.
  * @param string $width The width of the popup.
  */
-function em_popup( string $title = '', string $content = '', string $id = '', string $width = '60rem', string $padding = '3rem', bool $echo = true, bool $output_shortcodes = false, bool $auto_open = false, int $delay = 0, bool $show_once = false, string $persistence_method = 'cookie', int $show_interval_ms = 0, bool $debug = false ) {
+function emberly_popup( string $title = '', string $content = '', string $id = '', string $width = '60rem', string $padding = '3rem', bool $echo = true, bool $output_shortcodes = false, bool $auto_open = false, int $delay = 0, bool $show_once = false, string $persistence_method = 'cookie', int $show_interval_ms = 0, bool $debug = false ) {
 
 	// If we're in the admin, bail early.
 	if ( is_admin() ) {
@@ -63,7 +63,7 @@ function em_popup( string $title = '', string $content = '', string $id = '', st
 	}	
 
 	// Start the popup HTML (sanitize the outer structure only)
-	$popup_start = '<div class="' . esc_attr( implode( ' ', $overlay_classes ) ) . '" ' . em_build_data_attributes( $data_attributes ) . '>
+	$popup_start = '<div class="' . esc_attr( implode( ' ', $overlay_classes ) ) . '" ' . emberly_popups_build_data_attributes( $data_attributes ) . '>
 			<div class="em-popup em-popup-bg" id="em-popup-' . esc_attr( $id ) . '" style="max-width: ' . esc_attr( $width ) . ';" data-em-popup-id="' . esc_attr( $id ) . '" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="popup-title-' . esc_attr( $id ) . '">
 				<button class="em-popup-close" aria-label="Close popup">
 					' . $icon_markup . '
@@ -77,9 +77,9 @@ function em_popup( string $title = '', string $content = '', string $id = '', st
 
 	// Return or echo
 	if ( $echo ) {
-		echo wp_kses( $popup_start, em_allowed_popup_html() )  . ( $output_shortcodes ? do_shortcode( $content ) : wp_kses_post( $content, em_allowed_popup_html() ) ) . wp_kses( $popup_end, em_allowed_popup_html() );
+		echo wp_kses( $popup_start, emberly_popups_allowed_popup_html() )  . ( $output_shortcodes ? do_shortcode( $content ) : wp_kses_post( $content, emberly_popups_allowed_popup_html() ) ) . wp_kses( $popup_end, emberly_popups_allowed_popup_html() );
 	} else {
-		return wp_kses( $popup_start, em_allowed_popup_html() )  . ( $output_shortcodes ? do_shortcode( $content ) : wp_kses_post( $content, em_allowed_popup_html() ) ) . wp_kses( $popup_end, em_allowed_popup_html() );
+		return wp_kses( $popup_start, emberly_popups_allowed_popup_html() )  . ( $output_shortcodes ? do_shortcode( $content ) : wp_kses_post( $content, emberly_popups_allowed_popup_html() ) ) . wp_kses( $popup_end, emberly_popups_allowed_popup_html() );
 	}
 }
 
@@ -89,7 +89,7 @@ function em_popup( string $title = '', string $content = '', string $id = '', st
  * @param array $attributes The attributes to build.
  * @return string The data attributes.
  */
-function em_build_data_attributes( $attributes ) {
+function emberly_popups_build_data_attributes( $attributes ) {
     $output = array();
     foreach ( $attributes as $key => $value ) {
         $output[] = esc_attr( $key ) . '="' . esc_attr( $value ) . '"';
@@ -102,7 +102,7 @@ function em_build_data_attributes( $attributes ) {
  *
  * @return array
  */
-function em_allowed_popup_html() {
+function emberly_popups_allowed_popup_html() {
 	return array_merge(
 		wp_kses_allowed_html( 'post' ),
 		array(
